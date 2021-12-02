@@ -17,3 +17,24 @@
 ## AWS
 > - When we talk about cloud computing, Amazon Web Services(AWS) is the first name that comes to mind. AWS is the pioneer of cloud computing in the cloud industry. Having launched in 2004 with just one service(SQS) they have come a long way. AWS, without a doubt, is the most mature cloud service provider and the current market leader in the cloud industry.
 With more than 212 services including computing, storage, networking, database, analytics, application services, deployment, management, mobile, developer tools, and tools for the Internet of Things. AWS operates globally with 216 Points of Presence (205 Edge Locations & 11 Regional Caches) in 84 cities across 42 countries.
+
+## Steps to 2 tier Architecture
+> - Create App instance
+>  - EC2 configurations - Linux Ubuntu 180.04LTS, t2-micro, default storage, tags eng99_shahid_app, SG public ip available to public and ssh my ip, add correct ssh (eng99.pem).
+>  - ssh into app instance and add app file by either scp or git clone.
+>  - run provision file to add all dependencies - update, upgrade, nginx, nodejs, pm2
+>  - run app check if its working on browser
+>  - Create db instance
+>  - EC2 configurations - Linux Ubuntu 180.04LTS, t2-micro, default storage, tags eng99_shahid_db, SG private ip for app so it can connect and ssh my ip, add correct ssh (eng99.pem).
+>  - ssh into db ec2 instance
+>   - download all dependencies through provision file or manually - update, upgrade, nginx, nodejs, pm2, mongod.
+>   - check mongod status then cd to etc and find mongod.conf file.
+>   - change mongod.conf file ip to 0.0.0.0 and then cat mongod.conf to check if change has taken place.
+>   - restart, enable and check status for mongodb.
+>   - go back to app instance.
+>   - create env var DB_HOST="mongodb://db-ip:27017/posts"
+>   - source it with source ~/.bashrc
+>   - cd app.
+>   - node seeds/seed.js
+>   - npm start app.
+![download](https://user-images.githubusercontent.com/94617056/144422175-2cb78a21-0ac0-469b-a15d-5480db271a45.jpg)
