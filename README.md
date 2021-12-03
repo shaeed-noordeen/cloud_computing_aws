@@ -38,3 +38,25 @@ With more than 212 services including computing, storage, networking, database, 
 >   - node seeds/seed.js
 >   - npm start app.
 ![download](https://user-images.githubusercontent.com/94617056/144422175-2cb78a21-0ac0-469b-a15d-5480db271a45.jpg)
+
+## Availability and Scalability
+# Steps to AutoScaling and Load Balancing 
+> - Launch template for our auto scaling group
+>  - Create auto scaling group (ASG)
+>  - config ASG icnluding application load balancer (ALB)
+>  - Attach Virtual Private Cloud (VPC) - 3 subnets in 3 different AZ's
+>  - SG for app 
+>  - MAke sure all ec2 have nginx installed on (User data)
+>  - Auto scailing polcies for scale in and out ; min , max ,desired.
+>  - ALB - HTTP/HTTPS/ - Internet facing app
+>  - Regions eu - AZs
+>  # DR Plan
+>  - S3 buckets are used to allow files to be stored on AWS in a cost-effective manner.
+>  - ssh in to instance
+>  - download python and then pip.
+>  - download awscli 
+>  - After entering your acess key and secret key you'll be able to create a s3 bucket.
+>  - aws s3api create-bucket --bucket my-bucket --region us-east-1
+>  - aws s3api create-bucket --bucket my-bucket --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1![Captureautoscaling](https://user-images.githubusercontent.com/94617056/144631366-0a2099fa-4d35-4baa-944c-704460f94c88.PNG)
+![Captures3](https://user-images.githubusercontent.com/94617056/144631499-a020397a-dea4-4edb-8a61-e64ed069231a.PNG)
+
